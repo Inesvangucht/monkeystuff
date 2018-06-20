@@ -1,9 +1,23 @@
 apply plugin: 'java'
 
 repositories {
+    maven {
+        url = "https://dl.bintray.com/jmonkeyengine/org.jmonkeyengine/"
+    }
+}
+
+repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.jmonkeyengine:jme3-bullet:3.2.1-stable'
+    compile 'org.jmonkeyengine:jme3-bullet-native:3.2.1-stable'
+    compile(group: 'org.jmonkeyengine', name: 'jme3-examples', version: '3.2.1-stable') {
+        exclude group: 'org.jmonkeyengine', module: 'jme3-testdata'
+        exclude group: 'org.jmonkeyengine', module: 'jme3-jbullet'
+    }
+
+    compile files('.jme3-testdata2.jar')
 }
+
